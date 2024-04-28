@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreWeb", "AspNetCore
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreWebMvc", "AspNetCoreWebMvc\AspNetCoreWebMvc.csproj", "{F1A26255-A9A8-4DC0-89ED-FAA500A4020F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreWebApi", "AspNetCoreWebApi\AspNetCoreWebApi.csproj", "{668C4485-9F27-4B59-917B-F2D897C0D06C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreWebApi", "AspNetCoreWebApi\AspNetCoreWebApi.csproj", "{668C4485-9F27-4B59-917B-F2D897C0D06C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreWebApi.Identity", "AspNetCoreWebApi.Identity\AspNetCoreWebApi.Identity.csproj", "{64FECB1C-737D-4037-AA70-48041E273373}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{668C4485-9F27-4B59-917B-F2D897C0D06C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{668C4485-9F27-4B59-917B-F2D897C0D06C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{668C4485-9F27-4B59-917B-F2D897C0D06C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64FECB1C-737D-4037-AA70-48041E273373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64FECB1C-737D-4037-AA70-48041E273373}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64FECB1C-737D-4037-AA70-48041E273373}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64FECB1C-737D-4037-AA70-48041E273373}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

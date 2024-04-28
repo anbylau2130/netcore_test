@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Transactions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace AspNetCoreWebApi.Filters
@@ -17,14 +18,13 @@ namespace AspNetCoreWebApi.Filters
            options.Filters.Add<WebActionFilter>();
        });
      */
-    public class WebActionFilter:IAsyncActionFilter
+    public class WebActionFilter : IAsyncActionFilter
     {
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             Console.WriteLine("开始执行！");
 
             ActionExecutedContext r = await next();
-
             if (r.Exception == null)
             {
                 Console.WriteLine("执行成功！");
@@ -33,6 +33,9 @@ namespace AspNetCoreWebApi.Filters
             {
                 Console.WriteLine("执行失败");
             }
+
         }
+
+
     }
 }

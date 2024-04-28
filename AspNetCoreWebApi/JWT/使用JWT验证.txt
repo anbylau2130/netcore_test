@@ -1,0 +1,98 @@
+﻿使用JWT验证
+
+
+0.配置JWT节点，节点下创建SigningKey,ExpireSeconds两个配置项，
+分别代表JWT的秘钥和过期时间。再创建配置类JWTOptions，
+包含SigningKey,ExpiredSeconds两个属性
+
+1.安装Microsoft.AspNetCore.Authentication.JwtBearer
+
+2.对jwt进行配置
+创建类序列化类
+public class JwtWebSettings
+{
+    public string SecurityKey { get; set; }
+
+    public int ExpireSeconds { get; set; }
+}
+//注册JWT配置
+appsetting.json中配置JWT节点
+{
+  "JWT": {
+    "SecurityKey": "bcf2!rt8KME^oqGzosa!!egi",
+    "ExpireSeconds": 60
+  }
+}
+
+
+3.program中注册
+
+builder.Services.Configure<JwtWebSettings>(builder.Configuration.GetSection("JWT"));
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    var jwtConfig=builder.Configuration.GetSection("JWT").Get<JwtWebSettings>();
+    byte[] keyBytes = Encoding.UTF8.GetBytes(jwtConfig.SecurityKey);
+    var securityKey = new SymmetricSecurityKey(keyBytes);
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = securityKey
+    };
+});
+
+
+4.在builder.Services.AddAuthorization();之前加入 builder.Services.AddAuthentication();
+
+
+5.将Token返回给客户端
+[HttpPost]
+public async Task<ActionResult<string>> Login(string username,string password)
+{
+    var user = await userManage.FindByNameAsync(username);
+    var isSuccess = await userManage.CheckPasswordAsync(user, password);
+    if (!isSuccess)
+    {
+        return BadRequest("账户名或密码错误");
+    }
+    var claims = new List<Claim>();
+    claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
+    claims.Add(new Claim(ClaimTypes.Name, user.UserName));
+    var roles = await userManage.GetRolesAsync(user);
+    foreach(string role in roles)
+    {
+        claims.Add(new Claim(ClaimTypes.Role, role));
+    }
+    string jwtToken = Jwt.GetToken(claims, jwtConfig.Value.SecurityKey,jwtConfig.Value.ExpireSeconds);
+    return jwtToken;
+}
+
+
+6.再需要进行校验的Action或Controller上增加[Authorize]
+如果某方法不需要被校验，则使用[AllowAnonymous];使用角色访问[Authorize(Role="admin")]
+
+7.测试时需要自定义报文头
+Authorization的值为"Bearer {JWTToken}" 
+
+
+8.再swagger中请求JWT
+//指定Swagger中可以调试JWT
+builder.Services.AddSwaggerGen(options=>{
+    var scheme = new OpenApiSecurityScheme()
+    {
+        Description = "Authorization header.\r\nExample:'Bearer 1233456u'",
+        //Reference = new OpenApiReference { Type = ReferenceType.Schema, Id = "Authorization" },
+        Scheme = "oauth2",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+    };
+    options.AddSecurityDefinition("Authorization", scheme);
+    var requirement = new OpenApiSecurityRequirement();
+    requirement[scheme] = new List<string>();
+    options.AddSecurityRequirement(requirement);
+
+
+});

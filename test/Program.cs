@@ -15,6 +15,7 @@ using test;
 
 // new EntityOperate().SearchAllNodeEntity();
 var opt = new EntityOperate();
+opt.AddEntity();
 // await opt.ExecSql();
-opt.ExpressionTree();
+//opt.ExpressionTree();
 

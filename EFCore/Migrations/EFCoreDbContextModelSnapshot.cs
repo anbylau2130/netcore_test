@@ -140,6 +140,12 @@ namespace EFCore.Migrations
                     b.Property<long?>("ParentId")
                         .HasColumnType("bigint");
 
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ParentId");

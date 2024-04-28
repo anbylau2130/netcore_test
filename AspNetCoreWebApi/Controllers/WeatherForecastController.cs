@@ -1,3 +1,4 @@
+using AspNetCoreWebApi.JWT;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreWebApi.Controllers
@@ -13,10 +14,12 @@ namespace AspNetCoreWebApi.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
+
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
         }
+        [NotCheckJwtVersion]
 
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()

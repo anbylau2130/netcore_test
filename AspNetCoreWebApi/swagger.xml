@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AspNetCoreWebApi</name>
+    </assembly>
+    <members>
+        <member name="M:AspNetCoreWebApi.Controllers.IdentityController.CreateAdmin">
+            <summary>
+            创建用户名为administrator的用户，并赋予admin权限
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetCoreWebApi.Controllers.IdentityController.SendResetPasswordToken(System.String)">
+            <summary>
+            通过用户名获取重置密码token
+            </summary>
+            <param name="username">用户名</param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetCoreWebApi.Controllers.IdentityController.ResetPassword(System.String,System.String,System.String)">
+            <summary>
+            重置密码
+            </summary>
+            <param name="username">用户名</param>
+            <param name="token">重置密码token</param>
+            <param name="newPassword">新密码</param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetCoreWebApi.Controllers.JwtController.Login(AspNetCoreWebApi.DataAnnotations.LoginRequest)">
+            <summary>
+            登录获取JwtToken
+            </summary>
+            <param name="username">用户名</param>
+            <param name="password">密码</param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetCoreWebApi.Controllers.JwtController.AuthorizeTest">
+            <summary>
+            测试权限接口
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:AspNetCoreWebApi.DataAnnotations.LoginRequest">
+            <summary>
+            Login方法Request参数
+            </summary>
+            <param name="UserName">用户名</param>
+            <param name="Password">密码</param>
+        </member>
+        <member name="M:AspNetCoreWebApi.DataAnnotations.LoginRequest.#ctor(System.String,System.String)">
+            <summary>
+            Login方法Request参数
+            </summary>
+            <param name="UserName">用户名</param>
+            <param name="Password">密码</param>
+        </member>
+        <member name="P:AspNetCoreWebApi.DataAnnotations.LoginRequest.UserName">
+            <summary>用户名</summary>
+        </member>
+        <member name="P:AspNetCoreWebApi.DataAnnotations.LoginRequest.Password">
+            <summary>密码</summary>
+        </member>
+        <member name="T:AspNetCoreWebApi.DataAnnotations.LoginRequestValidator">
+            <summary>
+            登录参数验证类
+            </summary>
+        </member>
+        <member name="M:AspNetCoreWebApi.DataAnnotations.LoginRequestValidator.#ctor(Microsoft.AspNetCore.Identity.UserManager{AspNetCoreWebApi.Indentity.MyUser})">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:AspNetCoreWebApi.JWT.NotCheckJwtVersionAttribute">
+            <summary>
+            不检测JwtVersion标识
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:AspNetCoreWebApi.MiddleWare.MarkdownMiddleware" -->
+        <member name="M:AspNetCoreWebApi.MiddleWare.MarkdownMiddleware.DetectCharset(System.IO.Stream)">
+            <summary>
+            安装ude net standard包 
+            检测流的字符集编码
+            </summary>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AspNetCoreWebApi.Migrations.init">
+            <inheritdoc />
+        </member>
+        <member name="M:AspNetCoreWebApi.Migrations.init.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:AspNetCoreWebApi.Migrations.init.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:AspNetCoreWebApi.Migrations.init.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,61 @@
+﻿JWT生成方式
+
+
+1.安装System.IdentityModel.Tokens.Jwt
+
+2.生成JWT
+ public static string GetToken()
+{
+    var claims = new List<Claim>();
+    claims.Add(new Claim(ClaimTypes.NameIdentifier,"6"));
+    claims.Add(new Claim(ClaimTypes.Name,"hiuyeung"));
+    claims.Add(new Claim(ClaimTypes.Role, "admin"));
+    claims.Add(new Claim(ClaimTypes.Role, "manager"));
+    DateTime expires = DateTime.Now.AddDays(1);
+    byte[] secBytes = Encoding.UTF8.GetBytes(SecurityKey);
+    var secKey = new SymmetricSecurityKey(secBytes);
+    var credentials = new SigningCredentials(secKey, SecurityAlgorithms.HmacSha256Signature);
+    var tokenDescriptor = new JwtSecurityToken(claims: claims, expires: expires, signingCredentials: credentials);
+    string jwt = new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
+    return jwt;
+}
+
+3.通过编码方式解码JWT数据
+
+    public static string JwtDecode(string jwtStr)
+    {
+        jwtStr.Replace('-', '+').Replace('_', '/');
+
+        switch (jwtStr.Length / 4)
+        {
+            case 2:
+                jwtStr += "==";
+                break;
+            case 3:
+                jwtStr += "=";
+                break;
+        }
+        var bytes = Convert.FromBase64String(jwtStr);
+        return Encoding.UTF8.GetString(bytes);
+    }
+
+
+
+4.使用JwtSecurityTokenHandler 解码JWT
+
+    public static bool CheckoutToken(string token)
+    {
+        JwtSecurityTokenHandler tokenHandler = new();
+        TokenValidationParameters valParam = new TokenValidationParameters();
+        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SecurityKey));
+        valParam.IssuerSigningKey = securityKey;
+        valParam.ValidateIssuer = false;
+        valParam.ValidateAudience = false;
+        ClaimsPrincipal claimsPrincpal = tokenHandler.ValidateToken(token, valParam, out SecurityToken secToken);
+
+        foreach(var claim in claimsPrincpal.Claims)
+        {
+            Console.WriteLine($"{claim.Type}={claim.Value}");
+        }
+        return true;
+    }

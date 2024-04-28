@@ -1,0 +1,8 @@
+﻿1.User中添加JWTverson字段
+
+
+2.修改登录并发放令牌代码,把用户的JwtVerson属性自增1，并把JWTVersion的值写入Token令牌
+
+
+3.编写一个操作筛选器，统一实现对所有控制器进行JwtToken的校验，把JwtValidationFilter注册到Program.cs中
+
