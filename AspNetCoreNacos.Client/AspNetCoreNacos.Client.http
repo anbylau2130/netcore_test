@@ -1,0 +1,6 @@
+@AspNetCoreNacos.Client_HostAddress = http://localhost:5161
+
+GET {{AspNetCoreNacos.Client_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,18 @@
+﻿syntax="proto3";
+
+//命名空间
+option csharp_namespace="GrpcTokenClient";
+//包名
+package token;
+
+import "google/protobuf/empty.proto";
+
+//出参
+message TokenResponse{
+	string token=1;
+}
+
+//声明需要暴露的Grpc方法
+service TokenService{
+	rpc GetToken(google.protobuf.Empty) returns (TokenResponse);
+} 

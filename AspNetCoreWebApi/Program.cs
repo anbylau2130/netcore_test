@@ -5,7 +5,9 @@ using AspNetCoreWebApi;
 using AspNetCoreWebApi.Filters;
 using AspNetCoreWebApi.Indentity;
 using AspNetCoreWebApi.JWT;
+using AspNetCoreWebApi.MediatR;
 using AspNetCoreWebApi.MiddleWare;
+using AspNetCoreWebApi.WebSocket;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -25,6 +27,8 @@ builder.Services.AddEndpointsApiExplorer();
 
 #region  使用依赖注入
 builder.Services.AddScoped<Calculator>();
+builder.Services.AddScoped<BaseDbContext>();
+
 #endregion
 
 #region 使用缓存
@@ -101,6 +105,14 @@ builder.Services.AddDbContext<MyDbContext>(options=>
 {
     options.UseSqlServer("Data Source=127.0.0.1;Database=Demo2;User Id=sa;Password=123456;Encrypt=false;");
 });
+
+builder.Services.AddDbContext<BaseDbContext>(options =>
+{
+    options.UseSqlServer("Data Source=127.0.0.1;Database=Demo2;User Id=sa;Password=123456;Encrypt=false;");
+});
+
+
+
 builder.Services.AddDataProtection();
 builder.Services.AddIdentityCore<MyUser>(options=>
 {
@@ -174,6 +186,17 @@ builder.Services.AddFluentValidation(options =>
 
 #endregion
 
+#region 增加AddSignalR服务
+builder.Services.AddSignalR();
+#endregion 
+
+
+#region MediatR配置
+builder.Services.AddMediatR(options =>
+{
+    options.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
+});
+#endregion
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -206,6 +229,14 @@ app.UseAuthorization();
 //如果请求头中含有Cache-Control=no-cache则会忽略服务器端缓存
 //相应状态为200的Get，Head可能被缓存POST请求是不能被缓存的；报文头中不能含有Authorization，Set-Cookie等。
 app.UseResponseCaching();
+
+#region 设置SignalR
+
+//映射
+app.MapHub<ChatRoomHub>("/ChatRoomHub");
+
+#endregion
+
 app.MapControllers();
 
 app.Run();

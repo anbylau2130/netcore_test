@@ -18,6 +18,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EFCore\EFCore.csproj" />
+    <ProjectReference Include="..\ITest\ITest.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="email.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

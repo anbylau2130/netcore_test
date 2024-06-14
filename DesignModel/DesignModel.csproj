@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="6桥接模式\BrigdePattern\Case\Color.cs" />
+    <Compile Remove="6桥接模式\BrigdePattern\Case\Green.cs" />
+    <Compile Remove="6桥接模式\BrigdePattern\Case\Oval.cs" />
+    <Compile Remove="6桥接模式\BrigdePattern\Case\Rectangle.cs" />
+    <Compile Remove="6桥接模式\BrigdePattern\Case\Red.cs" />
+    <Compile Remove="6桥接模式\BrigdePattern\Case\Round.cs" />
+    <Compile Remove="6桥接模式\BrigdePattern\Case\Sharp.cs" />
+    <Compile Remove="6桥接模式\BrigdePattern\Case\Square.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Consul" Version="1.7.14.3" />
+  </ItemGroup>
+
+</Project>

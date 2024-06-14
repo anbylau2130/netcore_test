@@ -46,7 +46,9 @@ builder.Services.AddIdentityCore<MyUser>(options =>
 
 
 var idBuilder = new IdentityBuilder(typeof(MyUser), typeof(MyRole), builder.Services);
-idBuilder.AddEntityFrameworkStores<MyDbContext>().AddDefaultTokenProviders().AddRoleManager<RoleManager<MyRole>>().AddUserManager<UserManager<MyUser>>();
+idBuilder.AddEntityFrameworkStores<MyDbContext>().AddDefaultTokenProviders()
+    .AddRoleManager<RoleManager<MyRole>>()
+    .AddUserManager<UserManager<MyUser>>();
 
 
 #endregion Ω· ¯≈‰÷√

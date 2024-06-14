@@ -1,0 +1,23 @@
+﻿syntax="proto3";
+
+option csharp_namespace="EmptygRpcServer";
+
+package user;
+
+message UserDtoGrpc{
+	int32 id=1;
+	string name=2;
+}
+
+//入参
+message UserRequest{
+}
+//出参
+message UserResponse{
+	repeated UserDtoGrpc user_list=1;
+}
+
+//声明需要暴露的Grpc方法
+service UserService{
+	rpc GetUserInfo(UserRequest) returns (UserResponse);
+} 

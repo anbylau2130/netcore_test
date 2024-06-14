@@ -13,6 +13,9 @@ public class TestService
     }
 }
 
+/// <summary>
+/// 
+/// </summary>
 public class DelyCommandService:Microsoft.Extensions.Hosting.BackgroundService
 {
 

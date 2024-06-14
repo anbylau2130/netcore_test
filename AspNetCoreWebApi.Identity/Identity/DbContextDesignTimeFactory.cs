@@ -8,9 +8,8 @@ public class DbContextDesignTimeFactory : IDesignTimeDbContextFactory<MyDbContex
     public MyDbContext CreateDbContext(string[] args)
     {
         DbContextOptionsBuilder<MyDbContext> optionsBuilder = new();
-        optionsBuilder.UseSqlServer("Data Source=10.1.2.51;Database=Demo;User Id=wsdd;Password=hxn_db_wsdd;Trusted_Connection=True" 
+        optionsBuilder.UseSqlServer("Data Source=127.0.0.1;Database=Demo;User Id=sa;Password=123456;Trusted_Connection=True" 
                                     );
         return new MyDbContext(optionsBuilder.Options);
-
     }
 }

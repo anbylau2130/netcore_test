@@ -4,6 +4,11 @@
         <name>AspNetCoreWebApi</name>
     </assembly>
     <members>
+        <member name="T:AspNetCoreWebApi.BackgroundService.DelyCommandService">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:AspNetCoreWebApi.Controllers.IdentityController.CreateAdmin">
             <summary>
             创建用户名为administrator的用户，并赋予admin权限
@@ -75,6 +80,31 @@
             不检测JwtVersion标识
             </summary>
         </member>
+        <member name="M:AspNetCoreWebApi.MediatR.BaseDbContext.SaveChangesAsync(System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="acceptAllChangesOnSuccess"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AspNetCoreWebApi.MediatR.Material">
+            <summary>
+            物料信息
+            </summary>
+        </member>
+        <member name="M:AspNetCoreWebApi.MediatR.Material.ChangePrice(System.Double)">
+            <summary>
+            修改物料价格
+            </summary>
+            <param name="price"></param>
+        </member>
+        <member name="M:AspNetCoreWebApi.MediatR.Material.ChangeUnit(System.String)">
+            <summary>
+            修改物料单位
+            </summary>
+            <param name="unit"></param>
+        </member>
         <!-- Badly formed XML comment ignored for member "T:AspNetCoreWebApi.MiddleWare.MarkdownMiddleware" -->
         <member name="M:AspNetCoreWebApi.MiddleWare.MarkdownMiddleware.DetectCharset(System.IO.Stream)">
             <summary>
@@ -95,6 +125,33 @@
         </member>
         <member name="M:AspNetCoreWebApi.Migrations.init.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
+        </member>
+        <member name="T:AspNetCoreWebApi.Migrations.BaseDb.materials">
+            <inheritdoc />
+        </member>
+        <member name="M:AspNetCoreWebApi.Migrations.BaseDb.materials.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:AspNetCoreWebApi.Migrations.BaseDb.materials.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:AspNetCoreWebApi.Migrations.BaseDb.materials.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:AspNetCoreWebApi.WebSocket.ChatRoomHub.SendPublicMessage(System.String)">
+            <summary>
+            发送公共消息
+            </summary>
+            <param name="message">广播的消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetCoreWebApi.WebSocket.ChatRoomHub.SendPrivateMessage(System.String,System.String)">
+            <summary>
+            发送私有消息
+            </summary>
+            <param name="username">用户名</param>
+            <param name="message">发送的消息</param>
+            <returns></returns>
         </member>
     </members>
 </doc>
