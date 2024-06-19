@@ -1,0 +1,6 @@
+@AspNetCore.Polly.Server_HostAddress = http://localhost:5159
+
+GET {{AspNetCore.Polly.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
